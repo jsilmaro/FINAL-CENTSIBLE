@@ -17,9 +17,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from finance.views import home
+from rest_framework.routers import DefaultRouter
+
+router = DefaultRouter()
+
 
 urlpatterns = [
     path('', home, name='home'),
     path('admin/', admin.site.urls),
-    path('api/', include('finance.urls')),  # Ensure this is correct
+    path('api/', include('finance.urls')),
+    path('', include(router.urls)),  # Ensure this is correct
 ]

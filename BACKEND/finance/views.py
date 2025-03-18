@@ -59,18 +59,31 @@ class TransactionViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)  # Ensures the transaction is linked to the logged-in user
 
+
+
+
+@api_view(["GET"])
 def home(request):
-    return HttpResponse("<h1>Welcome to Centsible!</h1>")
+    transactions = Transaction.objects.all()  # Fetch all transactions
+    serializer = TransactionSerializer(transactions, many=True)  # Serialize the transactions
 
+    return Response({
+        "success": True,
+        "message": "Transactions retrieved successfully",
+        "data": serializer.data  # Use "data" to hold the transaction list
+    })
 
+@api_view(["GET"])
 def api_root(request):
-    return JsonResponse({
-        "transactions": "/api/transactions/",
+    transactions = Transaction.objects.all()  # Fetch all transactions
+    serializer = TransactionSerializer(transactions, many=True)  # Serialize the transactions
+
+    return Response({
+        "transactions": serializer.data,
         "signup": "/api/signup/",
         "signin": "/api/signin/",
         "signout": "/api/signout/",
-})
-
+    })
 
 @api_view(["GET"])
 def transaction_api(request):

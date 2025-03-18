@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { Switch, Route } from "wouter";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
@@ -16,6 +17,11 @@ import SettingsPage from "@/pages/settings-page";
 import NotFound from "@/pages/not-found";
 
 function Router() {
+  
+  useEffect(()=> {
+    console.log(import.meta.env.VITE_API_URL)
+  }, [])
+
   return (
     <Switch>
       <Route path="/" component={LandingPage} />

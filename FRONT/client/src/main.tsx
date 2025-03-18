@@ -11,7 +11,5 @@ if (!rootElement) {
 const root = createRoot(rootElement);
 
 root.render(
-  <ErrorBoundary>
     <App />
-  </ErrorBoundary>
 );

@@ -63,7 +63,7 @@ MIDDLEWARE = [
 
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",  # React app URL
+    "http://localhost:5000",  # React app URL
 ]
 
 ROOT_URLCONF = 'centsible.urls'
